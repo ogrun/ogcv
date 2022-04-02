@@ -1,0 +1,144 @@
+---
+name: Ondrej
+surname: Grünwald
+position: "Information Technology Consultant"
+address: "Prague, Czech Republic"
+phone: +420 731 510 678
+email: "og@email.cz"
+linkedin: ondrejgrunwald
+date: "`r format(Sys.time(), '%B %Y')`"
+output: 
+  vitae::awesomecv:
+    page_total: true
+#headcolor: "414141"
+params:
+  pdf_mode: TRUE
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(vitae)
+library(tibble)
+library(magrittr) # For the pipe
+library(dplyr)
+library(stringr)
+library(ogcv)
+
+knitr::opts_chunk$set(
+  results='asis', 
+  echo = FALSE
+)
+
+
+
+# Read in all data and initialize a CV printer object
+CV <- create_CV_object(
+  data_location = "https://docs.google.com/spreadsheets/d/17QS5YS4z2CUniUukuaijEsuU3MMjXNHQrOH2wq7qq5k/edit?usp=sharing",  
+  pdf_mode = params$pdf_mode
+)
+
+```
+
+
+
+# Profile
+<!-- Should reflect the job description -->
+
+```{r}
+# Note the special double pipe so we modify the CV object in place
+CV %<>% print_text_block("intro") 
+```
+
+
+# Experience
+<!-- Should reflect the job description -->
+
+```{r}
+CV %>% section_awsome('industry_positions') %>% 
+  detailed_entries(role, dates, company, loc, details)
+```
+
+
+```{r consulting}
+
+tribble(
+  ~ role, ~ company, ~ loc, ~ dates, ~ details,
+  "Information Technology Consultant", "Oracle", "Prague, Czech Republic", "Sep. 2017 - Present", 
+    list("Data science consulting projects including churn modeling, time series forecasting, document classification, Computer Vision, NLP and AI tasks.","Database consulting projects mainly in Banking sector including ETL processes, database migration, Risk management datamart, Yield Curves Constructions, reports",
+         "Consulting project clients include: Vodafone, J\\&T, Škoda Auto, Česká spořitelna, Job Air."
+    ),
+    "Data scientist", "SAP", "Prague, Czech Republic", "Sep. 2012 - Sep. 2017", 
+    list("Built global target list portfolio leveraging buisness expertise and internal data sourcfes to address gaps in sales pipeline.",
+         "Database development, ETL, database recommendation engine.",
+         "Building Sales play data assets.",
+         "As part of global analytics team focused on research, prototyping and development of data science and big data solutions.", 
+         "Designed and executed data science initiatives, explored data sources, pre-processed historical data.", 
+          "Developedstatistical/machine learning models",
+          "Integrated statistical/machine learning models into products.",
+          "Evaluated, improved and refined models by tunig parameters, adjusted data sources and model approaches to provide business value",
+         "Worked closely with the product managers and engineers to ensure that models were used in in product or services."
+    ),
+  "Researcher/Lecturer", "Czech Technical University in Prague", "Prague, Czech Republic", "Oct. 2008 - 2014", 
+    list("Involved in many internal and external data projects of varying size and complexity.", 
+         "Projects typically feature large scale time series modelling or analysis, cross-sectional modelling and creating tools for improving workflows.", 
+         "Sessional teaching of university students undertaking Bachelor's and Master's degrees. Specific classes are listed in 'Teaching experience'.",
+         "Understanding of market research, data collection and analysis",
+         "Strong organizational and project management skills with prior project management experience.")
+) %>% 
+  detailed_entries(role, dates, company, loc, details)
+```
+
+
+# Education
+
+```{r}
+
+tribble(
+  ~ Degree, ~ Year, ~ Institution, ~ Where,
+  "Doctor (Ph.D.) in Electrical Engineering and Information Technology - Mathematical Statistics and Modeling", "2008-14", "Czech Technical University in Prague", "Czech Republic",
+  "Engineer (Ing.)  in Electrical Engineering and Informatics - Economics of Electrical Power Engeneering", "2006-08", "Czech Technical University in Prague", "Czech Republic",
+  "Bachelor (Bc.) in Electrical Engineering and Informatics - Computer Science ", "2003-07", "Czech Technical University in Prague", "Czech Republic"
+  ) %>% 
+  detailed_entries(Degree, Year, Institution, Where)
+```
+
+# Nobel Prizes
+
+```{r}
+tribble(
+  ~Year, ~Type, ~Desc,
+  1903, "Physics", "Awarded for her work on radioactivity with Pierre Curie and Henri Becquerel",
+  1911, "Chemistry", "Awarded for the discovery of radium and polonium"
+) %>% 
+  brief_entries(
+    glue::glue("Nobel Prize in {Type}"),
+    Year, 
+    Desc
+  )
+```
+
+# Publications
+
+```{r}
+library(dplyr)
+knitr::write_bib(c("vitae", "tibble"), "packages.bib")
+
+bibliography_entries("packages.bib") %>%
+  arrange(desc(author$family), issued)
+```
+
+# Skills
+
+```{r}
+tribble(
+  ~Year, ~Type, ~Desc,
+  1903, "Physics", "Awarded for her work on radioactivity with Pierre Curie and Henri Becquerel",
+  1911, "Chemistry", "Awarded for the discovery of radium and polonium"
+) %>% 
+  brief_entries(
+    glue::glue("Nobel Prize in {Type}"),
+    Year, 
+    Desc
+  )
+```
