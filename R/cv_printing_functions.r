@@ -82,7 +82,10 @@ create_CV_object <-  function(data_location,
       start = ifelse(start == "NULL", NA, start),
       end = ifelse(end == "NULL", NA, end),
       start_year = extract_year(start),
-      end_year = extract_year(end),
+      end_year = dplyr::case_when(
+        is.na(end) ~ "Current",
+        TRUE       ~ extract_year(end)
+        ),
       no_start = is.na(start),
       has_start = !no_start,
       no_end = is.na(end),
