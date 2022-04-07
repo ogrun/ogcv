@@ -1,4 +1,4 @@
-name: Template Name
+name: Datadriven awsome
 description: >
-   A description of the template
+   This uses awsome theme with google drive data to produce latex cv.
 create_dir: FALSE
