@@ -5,7 +5,9 @@ position: "Information Technology Consultant"
 address: "Prague, Czech Republic"
 phone: +420 731 510 678
 email: "og@email.cz"
-linkedin: ondrejgrunwald
+linkedin: ogrun
+github: ogrun
+www: rs.skyway.fun
 date: "`r format(Sys.time(), '%B %Y')`"
 output: 
   vitae::awesomecv:

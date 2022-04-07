@@ -239,7 +239,6 @@ print_skill_bars <- function(cv, out_of = 5, bar_color = "#969696", bar_backgrou
 }
 
 
-
 #' @description List of all links in document labeled by their superscript integer.
 print_links <- function(cv) {
   n_links <- length(cv$links)
