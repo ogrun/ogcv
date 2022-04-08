@@ -57,7 +57,7 @@ CV %<>% print_text_block("intro")
 <!-- Should reflect the job description -->
 
 ```{r}
-CV %<>% section_awsome('industry_positions') %>% 
+CV %>% section_awsome('industry_positions') %>% 
   detailed_entries(role, dates, company, loc, details)
 ```
 
@@ -66,7 +66,7 @@ CV %<>% section_awsome('industry_positions') %>%
 <!-- Should reflect the job description -->
 
 ```{r}
-CV %<>% section_awsome('education') %>% 
+CV %>% section_awsome('education') %>% 
   detailed_entries(role, dates, company, loc, details)
 ```
 
